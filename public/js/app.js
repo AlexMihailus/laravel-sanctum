@@ -5275,8 +5275,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Index"
+  name: "Index",
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      axios.post("/logout").then(function (res) {
+        _this.$router.push({
+          name: "user.login"
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -27934,6 +27946,20 @@ var render = function () {
       _c("router-link", { attrs: { to: { name: "user.registration" } } }, [
         _vm._v("Registration"),
       ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: { href: "#" },
+          on: {
+            click: function ($event) {
+              $event.preventDefault()
+              return _vm.logout.apply(null, arguments)
+            },
+          },
+        },
+        [_vm._v("Logout")]
+      ),
       _vm._v(" "),
       _c("router-view"),
     ],
