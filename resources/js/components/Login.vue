@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="w-25">
     <input
       v-model="email"
       type="email"
       placeholder="email"
-      class="form-control"
+      class="form-control mt-3 mb-3"
     />
     <input
       v-model="password"
       type="password"
       placeholder="password"
-      class="form-control"
+      class="form-control mb-3"
     />
     <input
       @click.prevent="login"
@@ -37,11 +37,11 @@ export default {
       axios.get("/sanctum/csrf-cookie").then((response) => {
         axios
           .post("/login", { email: this.email, password: this.password })
-          .then((r) => {
-            console.log(r);
+          .then(r => {
+            localStorage.setItem('x_xsrf_token', r.config.headers['X-XSRF-TOKEN'])
+            this.$router.push({ name: "user.personal" })
           })
-          .catch((err) => {
-            console.log(err.response);
+          .catch(err => {
           });
       });
     },
