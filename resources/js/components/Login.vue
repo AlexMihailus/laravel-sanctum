@@ -12,7 +12,12 @@
       placeholder="password"
       class="form-control"
     />
-    <input @click.prevent="login" type="submit" value="login" class="btn btn-primary" />
+    <input
+      @click.prevent="login"
+      type="submit"
+      value="login"
+      class="btn btn-primary"
+    />
   </div>
 </template>
 
@@ -24,23 +29,23 @@ export default {
     return {
       email: null,
       password: null,
-    }
+    };
   },
 
   methods: {
     login() {
-      axios.get("/sanctum/csrf-cookie").then(response => {
+      axios.get("/sanctum/csrf-cookie").then((response) => {
         axios
-          .post('/login', { email: this.email, password: this.password })
-          .then( r => {
+          .post("/login", { email: this.email, password: this.password })
+          .then((r) => {
             console.log(r);
           })
-          .catch( err => {
-              console.log(err.response)
-          })
-      })
-    }
-  }
+          .catch((err) => {
+            console.log(err.response);
+          });
+      });
+    },
+  },
 };
 </script>
 
